@@ -1,0 +1,8 @@
+{
+  "name": "core-scroll-header-panel",
+  "private": true,
+  "dependencies": {
+    "core-icon-button": "Polymer/core-icon-button#master",
+    "core-toolbar": "Polymer/core-toolbar#master"
+  }
+}
