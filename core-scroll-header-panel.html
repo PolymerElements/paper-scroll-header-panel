@@ -17,7 +17,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../polymer/polymer.html">
 
-<polymer-element name="core-scroll-header-panel" attributes="tallMode noDissolve noReveal headerHeight minHeaderHeight">
+<polymer-element name="core-scroll-header-panel" attributes="tallMode noDissolve noReveal fixed headerHeight minHeaderHeight">
 <template>
 
   <link rel="stylesheet" href="core-scroll-header-panel.css">
@@ -44,9 +44,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     tallMode: false,
     
+    // If true, no cross-fade transition from one background to another.
     noDissolve: false,
     
+    // If true, the header doesn't slide back in when scrolling back up.
     noReveal: false,
+    
+    // If true, the header is fixed to the top and never moves away.
+    fixed: false,
     
     headerHeight: 0,
     
@@ -73,7 +78,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
     
     headerHeightChanged: function() {
-      this.$.mainContainer.style.paddingTop = this.headerHeight + 'px';
+      this.fixedChanged();
       if (this.minHeaderHeight) {
         this.minHeaderHeightChanged();
       } else {
@@ -84,6 +89,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     minHeaderHeightChanged: function() {
       this.headerMargin = this.headerHeight - this.minHeaderHeight;
+    },
+    
+    fixedChanged: function() {
+      var s = this.$.mainContainer.style;
+      s.paddingTop = this.fixed ? null : this.headerHeight + 'px';
+      s.top = this.fixed ? this.headerHeight + 'px' : null;
+      if (this.fixed) {
+        this.transformHeader(0);
+      } else {
+        this.scroll();
+      }
     },
     
     transformHeader: function(y) {
@@ -136,9 +152,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
       this.prevScrollTop = sTop;
       
-      requestAnimationFrame(function() {
-        this.transformHeader(this.y);
-      }.bind(this));
+      if (!this.fixed) {
+        requestAnimationFrame(function() {
+          this.transformHeader(this.y);
+        }.bind(this));
+      }
     }
 
   });
