@@ -42,6 +42,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   Polymer('core-scroll-header-panel', {
     
+    /**
+     * Fired when the content has been scrolled.
+     *
+     * @event scroll
+     */
+    
+    // If true, header is a tall header and as user scrolls, it condenses to 
+    // make more room for the content area.
     tallMode: false,
     
     // If true, no cross-fade transition from one background to another.
@@ -157,6 +165,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this.transformHeader(this.y);
         }.bind(this));
       }
+      
+      this.fire('scroll', {target: this.$.mainContainer}, this, false);
     }
 
   });
