@@ -157,20 +157,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
       var sTop = this.$.mainContainer.scrollTop;
       
-      this.y = Math.min(this.headerHeight, Math.max(0, 
+      var y = Math.min(this.headerHeight, Math.max(0, 
           (this.noReveal ? sTop : this.y + sTop - this.prevScrollTop)));
       
       if (this.tallMode && this.prevScrollTop > sTop && sTop > this.headerMargin) {
-        this.y = Math.max(this.y, this.headerMargin);
+        y = Math.max(y, this.headerMargin);
+      }
+      
+      if (!this.fixed && y !== this.y) {
+        requestAnimationFrame(this.transformHeader.bind(this, y));
       }
       
       this.prevScrollTop = sTop;
-      
-      if (!this.fixed) {
-        requestAnimationFrame(function() {
-          this.transformHeader(this.y);
-        }.bind(this));
-      }
+      this.y = y;
       
       this.fire('scroll', {target: this.$.mainContainer}, this, false);
     }
