@@ -17,7 +17,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../polymer/polymer.html">
 
-<polymer-element name="core-scroll-header-panel" attributes="tallMode noDissolve noReveal fixed headerHeight minHeaderHeight">
+<polymer-element name="core-scroll-header-panel" attributes="tallMode noDissolve noReveal fixed keepMinHeader headerHeight minHeaderHeight">
 <template>
 
   <link rel="stylesheet" href="core-scroll-header-panel.css">
@@ -61,6 +61,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     // If true, the header is fixed to the top and never moves away.
     fixed: false,
     
+    // If true, the min/condensed header is always shown and not moves away.
+    keepMinHeader: false,
+    
     // The height of the header when it is at its full size. scroll-header-panel
     // will try to measure the header height so users usually don't need to 
     // set this.
@@ -75,6 +78,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     y: 0,
     
+    observe: {
+      'headerMargin fixed': 'setup'
+    },
+    
     domReady: function() {
       this.async('measureHeaderHeight');
     },
@@ -85,14 +92,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     measureHeaderHeight: function() {
       var header = this.header;
-      // measure headerHeight if it is not already set
-      if (!this.headerHeight && this.header) {
+      if (this.header) {
         this.headerHeight = header.offsetHeight;
       }
     },
     
     headerHeightChanged: function() {
-      this.fixedChanged();
       if (this.minHeaderHeight) {
         this.minHeaderHeightChanged();
       } else {
@@ -102,10 +107,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
     
     minHeaderHeightChanged: function() {
-      this.headerMargin = this.headerHeight - this.minHeaderHeight;
+      if (this.headerHeight) {
+        this.headerMargin = this.headerHeight - this.minHeaderHeight;
+      }
     },
     
-    fixedChanged: function() {
+    setup: function() {
       var s = this.$.mainContainer.style;
       s.paddingTop = this.fixed ? null : this.headerHeight + 'px';
       s.top = this.fixed ? this.headerHeight + 'px' : null;
@@ -157,7 +164,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
       var sTop = this.$.mainContainer.scrollTop;
       
-      var y = Math.min(this.headerHeight, Math.max(0, 
+      var y = Math.min(this.keepMinHeader ? 
+          this.headerMargin : this.headerHeight, Math.max(0, 
           (this.noReveal ? sTop : this.y + sTop - this.prevScrollTop)));
       
       if (this.tallMode && this.prevScrollTop > sTop && sTop > this.headerMargin) {
