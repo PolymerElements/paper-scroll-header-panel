@@ -64,8 +64,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </head>
 <body unresolved>
 
-  <core-scroll-header-panel tallMode>
-  
+  <core-scroll-header-panel condenses>
+
     <core-toolbar class="tall">
     
       <core-icon-button icon="arrow-back"></core-icon-button>
@@ -100,7 +100,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     addEventListener('core-header-transform', function(e) {
       var d = e.detail
-      var m = d.h - d.minh;
+      var m = d.height - d.condensedHeight;
       var scale = Math.max(0.75, (m - d.y) / (m / 0.25)  + 0.75);
       titleStyle.webkitTransform = titleStyle.transform = 
           'scale(' + scale + ') translateZ(0)';
