@@ -142,6 +142,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       return this.$.headerContent.getDistributedNodes()[0];
     },
     
+    get scroller() {
+      return this.$.mainContainer;
+    },
+    
     measureHeaderHeight: function() {
       var header = this.header;
       if (this.header) {
@@ -165,7 +169,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
     
     setup: function() {
-      var s = this.$.mainContainer.style;
+      var s = this.scroller.style;
       s.paddingTop = this.fixed ? null : this.headerHeight + 'px';
       s.top = this.fixed ? this.headerHeight + 'px' : null;
       if (this.fixed) {
@@ -214,7 +218,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return;
       }
       
-      var sTop = this.$.mainContainer.scrollTop;
+      var sTop = this.scroller.scrollTop;
       
       var y = Math.min(this.keepCondensedHeader ? 
           this.headerMargin : this.headerHeight, Math.max(0, 
@@ -231,7 +235,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this.prevScrollTop = sTop;
       this.y = y;
       
-      this.fire('scroll', {target: this.$.mainContainer}, this, false);
+      this.fire('scroll', {target: this.scroller}, this, false);
     }
 
   });
