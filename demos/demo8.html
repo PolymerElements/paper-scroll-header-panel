@@ -37,20 +37,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       left: 0;
     }
     
-    core-scroll-header-panel::shadow #tallHeaderBg {
+    /* background for toolbar when it is at its full size */
+    core-scroll-header-panel::shadow #headerBg {
       background-image: url(images/bg9.jpg);
     }
     
-    core-scroll-header-panel::shadow #headerBg {
+    /* background for toolbar when it is condensed */
+    core-scroll-header-panel::shadow #condensedHeaderBg {
       background-color: #673ab7;
     }
     
     core-toolbar {
       color: #f1f1f1;
       fill: #f1f1f1;
-    }
-    
-    core-toolbar.tall {
+      /* custom toolbar height */
       height: 256px;
     }
     
@@ -78,7 +78,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <core-scroll-header-panel condenses keepCondensedHeader condensedHeaderHeight="140">
   
-    <core-toolbar class="tall">
+    <core-toolbar>
     
       <core-icon-button icon="arrow-back"></core-icon-button>
       <div flex></div>

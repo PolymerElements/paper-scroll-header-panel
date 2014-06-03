@@ -8,7 +8,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <!--
-`core-scroll-header-panel` __WIP__
+`core-scroll-header-panel`
 
 @group Polymer Core Elements
 @element core-scroll-header-panel
@@ -30,8 +30,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
   <div id="headerContainer">
   
+    <div id="condensedHeaderBg"></div>
     <div id="headerBg"></div>
-    <div id="tallHeaderBg"></div>
     
     <content id="headerContent" select="core-toolbar, .core-header"></content>
     
@@ -189,18 +189,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           s = this.header.$.topBar.style;
           this.translateY(s, Math.min(y, this.headerMargin));
         }
-        // transition tall header bg
-        s = this.$.tallHeaderBg.style;
+        // transition header bg
+        s = this.$.headerBg.style;
         if (!this.noDissolve) {
           s.opacity = (this.headerMargin - y) / this.headerMargin;
         }
-        // adjust tall header bg so it stays at the center
+        // adjust header bg so it stays at the center
         this.translateY(s, y / 2);
-        // transition short header bg
+        // transition condensed header bg
         if (!this.noDissolve) {
-          s = this.$.headerBg.style;
+          s = this.$.condensedHeaderBg.style;
           s.opacity = y / this.headerMargin;
-          // adjust short header bg so it stays at the center
+          // adjust condensed header bg so it stays at the center
           this.translateY(s, y / 2);
         }
       }

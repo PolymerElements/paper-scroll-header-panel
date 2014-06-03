@@ -38,11 +38,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       left: 0;
     }
     
-    core-scroll-header-panel::shadow #tallHeaderBg {
+    /* background for toolbar when it is at its full size */
+    core-scroll-header-panel::shadow #headerBg {
       background-image: url(images/bg9.jpg);
     }
     
-    core-scroll-header-panel::shadow #headerBg {
+    /* background for toolbar when it is condensed */
+    core-scroll-header-panel::shadow #condensedHeaderBg {
       background-color: #f4b400;
     }
     
@@ -89,17 +91,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
   <script>
   
+    // toggle fixed header based on screen size
     var panel = document.querySelector('core-scroll-header-panel');
     var mquery = document.querySelector('#mquery');
-    
-    var titleStyle = document.querySelector('.title').style;
-    
     mquery.addEventListener('core-media-change', function() {
       panel.fixed = mquery.queryMatches;
     });
     
+    // custom transformation: scale header's title
+    var titleStyle = document.querySelector('.title').style;
     addEventListener('core-header-transform', function(e) {
-      var d = e.detail
+      var d = e.detail;
       var m = d.height - d.condensedHeight;
       var scale = Math.max(0.75, (m - d.y) / (m / 0.25)  + 0.75);
       titleStyle.webkitTransform = titleStyle.transform = 

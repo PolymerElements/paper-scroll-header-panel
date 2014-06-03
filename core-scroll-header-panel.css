@@ -32,7 +32,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   overflow: hidden;
 }
 
-#tallHeaderBg, #headerBg {
+#headerBg, #condensedHeaderBg {
   position: absolute;
   top: 0;
   left: 0;
@@ -43,6 +43,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   background-position: center center;
 }
 
-#headerBg {
+#condensedHeaderBg {
   opacity: 0;
 }
