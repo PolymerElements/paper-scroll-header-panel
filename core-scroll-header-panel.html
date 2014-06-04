@@ -8,7 +8,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <!--
-`core-scroll-header-panel`
+`core-scroll-header-panel` contains a header section and a content section.  The
+header is initially on the top part of the view but it scrolls away with the 
+rest of the scrollable content.  Upon scrolling slightly up at any point, the 
+header scrolls back into view.  This is useful for saving screen space 
+and allows users to access important controls by easily moving them back to the 
+view.
+
+`core-scroll-header-panel` works well with `core-toolbar` but can use any element 
+that represents a header by adding a `core-header` class to it.  And use attribute 
+`content` to indicate it's a content section.
+
+    <core-scroll-header-panel>
+      <core-toolbar>Header</core-toolbar>
+      <div content>Content goes here...</div>
+    </core-scroll-header-panel>
 
 @group Polymer Core Elements
 @element core-scroll-header-panel
