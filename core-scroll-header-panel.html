@@ -223,11 +223,11 @@ or class `content` to delineate the content section.
       this.fire('core-header-transform',
           {y: y, height: this.headerHeight, condensedHeight: this.condensedHeaderHeight});
     },
-    
+
     translateY: function(s, y) {
-      s.webkitTransform = s.transform = 'translate3d(0, ' + y + 'px, 0)';
+      s.transform = s.webkitTransform = 'translate3d(0, ' + y + 'px, 0)';
     },
-    
+
     scroll: function() {
       if (!this.header) {
         return;
