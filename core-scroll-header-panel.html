@@ -299,7 +299,7 @@ or class `content` to delineate the content section.
         requestAnimationFrame(this.transformHeader.bind(this, y));
       }
       
-      this.prevScrollTop = sTop;
+      this.prevScrollTop = Math.max(sTop, 0);
       this.y = y;
       
       if (event) {
