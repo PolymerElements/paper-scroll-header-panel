@@ -57,7 +57,7 @@ or class `content` to delineate the content section.
 
   <link rel="stylesheet" href="core-scroll-header-panel.css">
 
-  <div id="mainContainer" on-scroll="{{scroll}}">
+  <div id="mainContainer">
   
     <content id="mainContent" select="[content], .content"></content>
     
@@ -181,6 +181,15 @@ or class `content` to delineate the content section.
     
     observe: {
       'headerMargin fixed': 'setup'
+    },
+    
+    ready: function() {
+      this._scrollHandler = this.scroll.bind(this);
+      this.scroller.addEventListener('scroll', this._scrollHandler);
+    },
+    
+    detached: function() {
+      this.scroller.removeEventListener('scroll', this._scrollHandler);
     },
     
     domReady: function() {
