@@ -6,6 +6,7 @@
     "core-icon-button": "Polymer/core-icon-button#master",
     "core-input": "Polymer/core-input#master",
     "core-media-query": "Polymer/core-media-query#master",
-    "core-toolbar": "Polymer/core-toolbar#master"
+    "core-toolbar": "Polymer/core-toolbar#master",
+    "core-resizable": "Polymer/core-resizable#master"
   }
 }
