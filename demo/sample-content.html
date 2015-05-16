@@ -7,7 +7,10 @@
     Code distributed by Google as part of the polymer project is also
     subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
-<polymer-element name="sample-content" attributes="size">
+<dom-module id="sample-content">
+  <template></template>
+</polymer-element>
+
 <script>
 
   (function() {
@@ -37,9 +40,16 @@
       return String.fromCharCode(65 + Math.floor(Math.random() * 26));
     }
 
-    Polymer('sample-content', {
+    Polymer({
+      is: 'sample-content',
 
-      size: 0,
+      properties: {
+        size: {
+          type: Number,
+          value: 0,
+          observer: 'sizeChanged'
+        }
+      },
 
       sizeChanged: function() {
         this.innerHTML = '';
@@ -54,9 +64,7 @@
             '</div>';
         }
       }
-
     });
   })();
-
 </script>
-</polymer-element>
+
