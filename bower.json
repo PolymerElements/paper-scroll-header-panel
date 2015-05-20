@@ -1,12 +1,35 @@
 {
-  "name": "core-scroll-header-panel",
+  "name": "paper-scroll-header-panel",
+  "version": "0.9.0",
   "private": true,
+  "authors": "The Polymer Authors",
+  "keywords": [
+    "web-components",
+    "web-component",
+    "polymer"
+  ],
+  "main": [
+    "paper-scroll-header-panel.html"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:PolymerElements/paper-scroll-header-panel.git"
+  },
   "dependencies": {
-    "core-field": "Polymer/core-field#master",
-    "core-icon-button": "Polymer/core-icon-button#master",
-    "core-input": "Polymer/core-input#master",
-    "core-media-query": "Polymer/core-media-query#master",
-    "core-toolbar": "Polymer/core-toolbar#master",
-    "core-resizable": "Polymer/core-resizable#master"
+    "polymer": "Polymer/polymer#^0.9.0",
+    "paper-toolbar": "PolymerElements/paper-toolbar#^0.9.0",
+    "iron-resizable-behavior": "PolymerElements/iron-resizable-behavior#^0.9.0"
+  },
+  "devDependencies": {
+    "paper-styles": "PolymerElements/paper-styles#^0.9.0",
+    "iron-flex-layout": "PolymerElements/iron-flex-layout#^0.9.0",
+    "iron-media-query": "PolymerElements/iron-media-query#^0.9.0",
+    "iron-icons": "PolymerElements/iron-icons#^0.9.0",
+    "paper-icon-button": "PolymerElements/paper-icon-button#^0.9.0",
+    "paper-input": "PolymerElements/paper-input#^0.9.0",
+    "iron-component-page": "PolymerElements/iron-component-page#^0.9.0",
+    "test-fixture": "PolymerElements/test-fixture#^0.9.0",
+    "web-component-tester": "*",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
   }
 }
