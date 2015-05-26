@@ -5,8 +5,9 @@
   "authors": "The Polymer Authors",
   "keywords": [
     "web-components",
-    "web-component",
-    "polymer"
+    "polymer",
+    "layout",
+    "responsive"
   ],
   "main": [
     "paper-scroll-header-panel.html"

@@ -65,6 +65,11 @@ Styling scroll-header-panel:
       background-color: #f4b400;
     };
   }
+
+@group Paper Element
+@element paper-scrollheader-panel
+@demo demo/index.html
+@hero hero.svg
 -->
 
 <dom-module id="paper-scroll-header-panel">
@@ -418,7 +423,7 @@ Styling scroll-header-panel:
       if (this.condenses && this._prevScrollTop >= sTop && sTop > this._headerMargin) {
         y = Math.max(y, this._headerMargin);
       }
-      
+
       if (!event || !this.fixed && y !== this._y) {
         this._transformHeader(y);
       }
@@ -447,4 +452,3 @@ Styling scroll-header-panel:
 })();
 
 </script>
-
