@@ -1,6 +1,7 @@
 {
   "name": "paper-scroll-header-panel",
-  "version": "1.0.0",
+  "description": "A header bar with scrolling behavior",
+  "version": "1.0.1",
   "license": "http://polymer.github.io/LICENSE.txt",
   "private": true,
   "authors": "The Polymer Authors",
