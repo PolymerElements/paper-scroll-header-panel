@@ -406,6 +406,7 @@ Styling scroll-header-panel:
       setTransform(s, t);
     },
 
+    /** @param {Event=} event */
     _scroll: function(event) {
       if (!this.header) {
         return;
@@ -432,7 +433,7 @@ Styling scroll-header-panel:
       this._y = y;
 
       if (event) {
-        this.fire('content-scroll', {target: this.scroller}, this, false);
+        this.fire('content-scroll', {target: this.scroller}, {cancelable: false});
       }
     }
 
