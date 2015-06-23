@@ -450,7 +450,7 @@ To change the background for toolbar when it is condensed:
       var reset = (y === null);
 
       // adjust top bar in paper-header so the top bar stays at the top
-      if (!this.scrollAwayTopbar && this.header.$ && this.header.$.topBar) {
+      if (!this.scrollAwayTopbar && this.header && this.header.$ && this.header.$.topBar) {
         this._translateY(this.header.$.topBar,
             reset ? null : Math.min(y, this._headerMargin));
       }
