@@ -12,7 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
 
 <!--
-`paper-scroll-header-panel` contains a header section and a content section.  The
+`paper-scroll-header-panel` contains a header section and a content section. The
 header is initially on the top part of the view but it scrolls away with the
 rest of the scrollable content.  Upon scrolling slightly up at any point, the
 header scrolls back into view.  This saves screen space and allows users to
@@ -20,7 +20,8 @@ access important controls by easily moving them back to the view.
 
 __Important:__ The `paper-scroll-header-panel` will not display if its parent does not have a height.
 
-Using [layout classes](https://www.polymer-project.org/1.0/docs/migration.html#layout-attributes) or custom properties, you can easily make the `paper-scroll-header-panel` fill the screen
+Using [layout classes](https://www.polymer-project.org/1.0/docs/migration.html#layout-attributes)
+or custom properties, you can easily make the `paper-scroll-header-panel` fill the screen
 
     <body class="fullbleed layout vertical">
       <paper-scroll-header-panel class="flex">
@@ -45,6 +46,17 @@ that represents a header by adding a `paper-header` class to it.
 
     <paper-scroll-header-panel>
       <paper-toolbar>Header</paper-toolbar>
+      <div>Content goes here...</div>
+    </paper-scroll-header-panel>
+
+You can enable the condensed mode and define a `transformable` element. In this mode,
+the header's height will condense to `condensedHeaderHeight` as the user scrolls 
+down from the top of the content area.
+
+    <paper-scroll-header-panel condenses>
+      <paper-toolbar>
+        <div class="title transformable">App Name</div>
+      </paper-toolbar>
       <div>Content goes here...</div>
     </paper-scroll-header-panel>
 
@@ -135,17 +147,28 @@ To change the background for toolbar when it is condensed:
     #condensedHeaderBg {
       opacity: 0;
     }
+
+    #headerContainer > ::content .transformable {
+      -webkit-transform-origin: left center;
+      transform-origin: left center;
+
+      will-change: transform;
+    }
   </style>
   <template>
     <div id="mainContainer">
-      <content id="mainContent" select=":not(paper-toolbar):not(.paper-header)"></content>
+      <content id="mainContent"
+        select=":not(paper-toolbar):not(.paper-header)">
+      </content>
     </div>
     <div id="headerContainer">
       <div class="bg-container">
         <div id="condensedHeaderBg"></div>
         <div id="headerBg"></div>
       </div>
-      <content id="headerContent" select="paper-toolbar, .paper-header"></content>
+      <content id="headerContent"
+        select="paper-toolbar, .paper-header">
+      </content>
     </div>
   </template>
 </dom-module>
@@ -176,6 +199,13 @@ To change the background for toolbar when it is condensed:
     ],
 
     properties: {
+      /**
+       * The scale factor of title when the header is condensed.
+       */
+      headerTitleScaleFactor: {
+        type: Number,
+        value: 0.75
+      },
 
       /**
        * If true, the header's height will condense to `condensedHeaderHeight`
@@ -280,10 +310,10 @@ To change the background for toolbar when it is condensed:
     },
 
     observers: [
-      '_setup(headerHeight, condensedHeaderHeight, fixed)',
+      '_setup(headerHeight, condensedHeaderHeight, fixed, headerTitleScaleFactor)',
       '_condensedHeaderHeightChanged(condensedHeaderHeight)',
       '_headerHeightChanged(headerHeight, condensedHeaderHeight)',
-      '_condensesChanged(condenses)',
+      '_condensesChanged(condenses)'
     ],
 
     listeners: {
@@ -292,6 +322,7 @@ To change the background for toolbar when it is condensed:
 
     ready: function() {
       this.async(this.measureHeaderHeight, 5);
+
       this._scrollHandler = this._scroll.bind(this);
       this.scroller.addEventListener('scroll', this._scrollHandler);
     },
@@ -340,7 +371,10 @@ To change the background for toolbar when it is condensed:
      * @type Object
      */
     get header() {
-      return Polymer.dom(this.$.headerContent).getDistributedNodes()[0];
+      if (!this._headerElement) {
+        this._headerElement = Polymer.dom(this.$.headerContent).getDistributedNodes()[0];
+      }
+      return this._headerElement;
     },
 
     /**
@@ -350,7 +384,10 @@ To change the background for toolbar when it is condensed:
      * @type Object
      */
     get content() {
-      return Polymer.dom(this.$.mainContent).getDistributedNodes()[0];
+      if (!this._contentElement) {
+        this._contentElement = Polymer.dom(this.$.mainContent).getDistributedNodes()[0];
+      }
+      return this._contentElement;
     },
 
     /**
@@ -361,6 +398,20 @@ To change the background for toolbar when it is condensed:
      */
     get scroller() {
       return this.$.mainContainer;
+    },
+
+    /**
+     * Returns the transformable element in the header
+     *
+     * @property transformableElement
+     * @type Object
+     */
+    get transformableElement() {
+      if (!this._transformableElement) {
+        this._transformableElement = this._querySelectorInHeader('.transformable');
+      }
+
+      return this._transformableElement;
     },
 
     get _headerMaxDelta() {
@@ -382,6 +433,22 @@ To change the background for toolbar when it is condensed:
       if (header && header.offsetHeight) {
         this.headerHeight = header.offsetHeight;
       }
+    },
+
+    /**
+     * Invoke this to clear the pointer references to the content, header
+     * and the transformable elements only if you change the selectors dynamically.
+     *
+     * @method clearCachedElement
+     */
+    clearCachedElement: function() {
+       this._contentElement = null;
+       this._headerElement = null;
+       this._transformableElement = null;
+    },
+
+    _querySelectorInHeader: function(selector) {
+      return Polymer.dom(this.header).querySelector(selector);
     },
 
     _headerHeightChanged: function(headerHeight) {
@@ -436,6 +503,7 @@ To change the background for toolbar when it is condensed:
 
       if (this.condenses) {
         this._condenseHeader(y);
+        this._transformHeaderTitle(y);
       }
 
       this.fire('paper-header-transform',
@@ -444,6 +512,18 @@ To change the background for toolbar when it is condensed:
           condensedHeight: this.condensedHeaderHeight
         }
       );
+    },
+
+    _transformHeaderTitle: function(y) {
+      if (this.transformableElement) {
+        var deltaHeight = this.headerHeight - this.condensedHeaderHeight;
+        var factor = this.headerTitleScaleFactor;
+
+        var scale = Math.max(factor,
+            (deltaHeight - y) / (deltaHeight / (1 - factor) ) + factor);
+
+        Polymer.Base.transform('scale(' + scale + ')', this.transformableElement);
+      }
     },
 
     _condenseHeader: function(y) {

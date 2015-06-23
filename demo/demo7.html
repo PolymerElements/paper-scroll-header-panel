@@ -55,9 +55,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     paper-toolbar.tall .title {
       font-size: 40px;
       margin-left: 60px;
-
-      -webkit-transform-origin: left center;
-      transform-origin: left center;
     }
 
     .content {
@@ -77,7 +74,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div class="flex"></div>
       <paper-icon-button icon="search"></paper-icon-button>
       <paper-icon-button icon="more-vert"></paper-icon-button>
-      <div class="bottom indent title">Title</div>
+      <div class="bottom indent title transformable">Title</div>
 
     </paper-toolbar>
 
@@ -93,7 +90,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <iron-media-query id="mquery" query="min-width: 600px"></iron-media-query>
 
   <script>
-
     // toggle fixed header based on screen size
     var panel = document.querySelector('paper-scroll-header-panel');
     var mquery = document.querySelector('#mquery');
@@ -103,17 +99,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     });
 
     panel.fixed = mquery.queryMatches;
-
-    // custom transformation: scale header's title
-    var title = document.querySelector('.title');
-    addEventListener('paper-header-transform', function(e) {
-      var d = e.detail;
-      var m = d.height - d.condensedHeight;
-      var scale = Math.max(0.75, (m - d.y) / (m / 0.25)  + 0.75);
-
-      Polymer.Base.transform('scale(' + scale + ') translateZ(0)', title);
-    });
-
   </script>
 
 </body>

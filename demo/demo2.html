@@ -36,12 +36,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       background-color: var(--paper-grey-200, #eee);
     }
 
-    paper-toolbar {
+    paper-toolbar.tall {
       background-color: var(--google-blue-500, #4285f4);
     }
 
-    paper-toolbar .title {
+    paper-toolbar.tall .title {
       margin-left: 60px;
+      font-size: 40px;
     }
 
     .content {
@@ -61,8 +62,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div class="flex"></div>
       <paper-icon-button icon="search"></paper-icon-button>
       <paper-icon-button icon="more-vert"></paper-icon-button>
-
-      <div class="bottom title">Title</div>
+      <div class="bottom title transformable">Title</div>
 
     </paper-toolbar>
 
