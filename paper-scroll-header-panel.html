@@ -255,7 +255,7 @@ To change the background for toolbar when it is condensed:
        * The state of the header. The initial value is `HEADER_STATE_EXPANDED`.
        * Depending on the configuration and the `scrollTop` value,
        * the header state could change to
-       * `HEADER_STATE_HIDDEN`, `HEADER_STATE_CONDESED` and `HEADER_STATE_INTERPOLATED`
+       * `HEADER_STATE_HIDDEN`, `HEADER_STATE_CONDENSED` and `HEADER_STATE_INTERPOLATED`
        */
       headerState: {
         type: Number,
@@ -323,7 +323,7 @@ To change the background for toolbar when it is condensed:
      * @property HEADER_STATE_CONDENSED
      * @type number
      */
-    HEADER_STATE_CONDESED: 2,
+    HEADER_STATE_CONDENSED: 2,
 
     /**
      * The header's state when its progress is somewhere between
@@ -425,7 +425,7 @@ To change the background for toolbar when it is condensed:
           case this.HEADER_STATE_HIDDEN:
             this._transformHeader(this._headerMaxDelta);
             break;
-          case this.HEADER_STATE_CONDESED:
+          case this.HEADER_STATE_CONDENSED:
             this._transformHeader(this._headerMargin);
             break;
         }
@@ -496,7 +496,7 @@ To change the background for toolbar when it is condensed:
 
       } else if (this.condenses && this._prevScrollTop >= sTop && sTop > this._headerMargin) {
         y = Math.max(y, this._headerMargin);
-        this._setHeaderState(this.HEADER_STATE_CONDESED);
+        this._setHeaderState(this.HEADER_STATE_CONDENSED);
 
       } else if (y === 0) {
         this._setHeaderState(this.HEADER_STATE_EXPANDED);
