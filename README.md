@@ -28,8 +28,29 @@ paper-scroll-header-panel {
 
 ```html
 <paper-scroll-header-panel>
-  <paper-toolbar>Header</paper-toolbar>
-  <div>Content goes here...</div>
+  <paper-toolbar>
+    App Tile
+  </paper-toolbar>
+  <div>
+    Content goes here...
+  </div>
+</paper-scroll-header-panel>
+```
+
+You can enable the condensed mode and define a `transformable` element. In this mode,
+the header's height will condense to `condensedHeaderHeight` as the user scrolls 
+down from the top of the content area.
+
+```html
+<paper-scroll-header-panel condenses>
+  <paper-toolbar>
+    <div class="title transformable">
+      App Name
+    </div>
+  </paper-toolbar>
+  <div>
+    Content goes here...
+  </div>
 </paper-scroll-header-panel>
 ```
 
