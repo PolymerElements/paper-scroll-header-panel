@@ -137,15 +137,15 @@ To change the background for toolbar when it is condensed:
     }
   </style>
   <template>
-    <div id="mainContainer">
-      <content id="mainContent" select=":not(paper-toolbar):not(.paper-header)"></content>
-    </div>
     <div id="headerContainer">
       <div class="bg-container">
         <div id="condensedHeaderBg"></div>
         <div id="headerBg"></div>
       </div>
       <content id="headerContent" select="paper-toolbar, .paper-header"></content>
+    </div>
+    <div id="mainContainer">
+      <content id="mainContent" select=":not(paper-toolbar):not(.paper-header)"></content>
     </div>
   </template>
 </dom-module>
