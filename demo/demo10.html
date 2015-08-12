@@ -10,7 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 <html>
 <head>
-  <title>paper-scroll-header-panel: demo1</title>
+  <title>paper-scroll-header-panel: demo10</title>
 
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <meta name="mobile-web-app-capable" content="yes">
@@ -22,6 +22,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="../../paper-toolbar/paper-toolbar.html">
   <link rel="import" href="../../iron-icons/iron-icons.html">
   <link rel="import" href="../../paper-icon-button/paper-icon-button.html">
+  <link rel="import" href="../../paper-drawer-panel/paper-drawer-panel.html">
+
   <link rel="import" href="sample-content.html">
 
   <link rel="stylesheet" href="../../paper-styles/demo.css">
@@ -54,7 +56,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </head>
 <body unresolved>
 
-  <paper-scroll-header-panel fixed>
+
+  <paper-drawer-panel>
+    <paper-header-panel drawer>
+      <paper-toolbar>Menu</paper-toolbar>
+    </paper-header-panel>
+   
+
+    <paper-scroll-header-panel main>
 
     <paper-toolbar>
 
@@ -72,6 +81,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </div>
 
   </paper-scroll-header-panel>
+
+  </paper-drawer-panel>
+
+  
 
 </body>
 </html>
