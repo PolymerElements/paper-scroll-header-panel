@@ -480,12 +480,8 @@ To change the background for toolbar when it is condensed:
     },
 
     _condensesChanged: function() {
-      if (this.condenses) {
-        this._scroll();
-      } else {
-        // reset transform/opacity set on the header
-        this._condenseHeader(null);
-      }
+      this._updateScrollState(this.scroller.scrollTop);
+      this._condenseHeader(null);
     },
 
     _setup: function() {
@@ -558,14 +554,12 @@ To change the background for toolbar when it is condensed:
       if (this.header) {
         this._updateScrollState(this.scroller.scrollTop);
 
-        if (event) {
-          this.fire('content-scroll', {
-            target: this.scroller
-          },
-          {
-            cancelable: false
-          });
-        }
+        this.fire('content-scroll', {
+          target: this.scroller
+        },
+        {
+          cancelable: false
+        });
       }
     },
 
@@ -588,7 +582,7 @@ To change the background for toolbar when it is condensed:
         this._setHeaderState(this.HEADER_STATE_INTERPOLATED);
       }
 
-      if (!event || !this.fixed && y !== this._y) {
+      if (!this.fixed && y !== this._y) {
         this._transformHeader(y);
       }
 
