@@ -20,7 +20,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <link rel="import" href="../paper-scroll-header-panel.html">
   <link rel="import" href="../demo/sample-content.html">
-  <link rel="import" href="../elements/custom-toolbar.html">
+  <link rel="import" href="../../paper-toolbar/paper-toolbar.html">
   <link rel="import" href="../../test-fixture/test-fixture.html">
 </head>
 <body>
@@ -28,10 +28,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <test-fixture id="trivialProgress">
     <template>
       <paper-scroll-header-panel>
-        <custom-toolbar>
-        </custom-toolbar>
-        <div class="content">
-        <sample-content size="100"></sample-content>
+        <!-- Drawer Content -->
+        <!-- Navigation -->
+        <!-- TODO: What if nested paper-scroll-header-panel is inside a custom element? -->
+        <nav>
+          <!-- NESTED: paper-scroll-header-panel -->
+          <!-- Drawer Scroll Header Panel -->
+          <paper-scroll-header-panel class="Drawer" drawer fixed>
+            <!-- Drawer Toolbar -->
+            <paper-toolbar id="drawer-toolbar" class="Drawer-header panel-header">
+              <span class="Drawer-title">Menu</span>
+            </paper-toolbar>
+            <paper-menu class="Drawer-widget Navigation list panel-content" id="drawer-content">
+              <a class="Navigation-link" data-route="home" href="/">
+                <iron-icon class="Navigation-icon" icon="home"></iron-icon>
+                <span>Home</span>
+              </a>
+            </paper-menu>
+          </paper-scroll-header-panel>
+        </nav>
+        <!-- Main area -->
+        <paper-toolbar id="main-toolbar">
+          Main toolbar
+        </paper-toolbar>
+        <div class="content" id="main-content">
+          <sample-content size="100"></sample-content>
         </div>
       </paper-scroll-header-panel>
     </template>
@@ -39,19 +60,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <script>
 
-    suite('custom toolbar', function() {
+    suite('nested structural layout', function() {
       var scrollHeaderPanel, toolbar, content;
 
       setup(function() {
         scrollHeaderPanel = fixture('trivialProgress');
 
-        toolbar = Polymer.dom(scrollHeaderPanel).querySelector('.paper-header');
-        content = Polymer.dom(scrollHeaderPanel).querySelector('.content');
+        toolbar = {
+          drawer: Polymer.dom(scrollHeaderPanel).querySelector('#drawer-toolbar'),
+          main: Polymer.dom(scrollHeaderPanel).querySelector('#main-toolbar')
+        };
+        content = {
+          drawer: Polymer.dom(scrollHeaderPanel).querySelector('#drawer-content'),
+          main: Polymer.dom(scrollHeaderPanel).querySelector('#main-content')
+        };
       });
 
       test('check default', function() {
-        assert.equal(scrollHeaderPanel.header, toolbar);
-        assert.equal(scrollHeaderPanel.content, content);
+        assert.equal(scrollHeaderPanel.header, toolbar.main);
+        assert.equal(scrollHeaderPanel.content, content.main);
         assert.equal(scrollHeaderPanel.condenses, false);
         assert.equal(scrollHeaderPanel.noReveal, false);
         assert.equal(scrollHeaderPanel.fixed, false);
@@ -63,7 +90,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       });
 
       test('condensation', function(done) {
-        var top1 = toolbar.getBoundingClientRect().top;
+        var top1 = toolbar.main.getBoundingClientRect().top;
 
         scrollHeaderPanel.condenses = true;
         scrollHeaderPanel.headerHeight = 150;
@@ -71,7 +98,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         scrollHeaderPanel.scroller.scrollTop = 300;
 
         flush(function() {
-          assert.notEqual(top1, toolbar.getBoundingClientRect().top)
+          assert.notEqual(top1, toolbar.main.getBoundingClientRect().top)
           done();
         });
       });
