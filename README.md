@@ -33,24 +33,13 @@ paper-scroll-header-panel {
 </paper-scroll-header-panel>
 ```
 
-### Styling scroll-header-panel:
+### Styling
 
-To change background for toolbar when it is at its full size:
+The following custom properties and mixins are available for styling:
 
-```css
-paper-scroll-header-panel {
-  --paper-scroll-header-panel-full-header: {
-    background-color: red;
-  };
-}
-```
+Custom property | Description | Default
+----------------|-------------|----------
+--paper-scroll-header-panel-full-header | To change background for toolbar when it is at its full size | {}
+--paper-scroll-header-panel-condensed-header | To change the background for toolbar when it is condensed | {}
+--paper-scroll-header-container | To override or add container styles | {}
 
-To change the background for toolbar when it is condensed:
-
-```css
-paper-scroll-header-panel {
-  --paper-scroll-header-panel-condensed-header: {
-    background-color: #f4b400;
-  };
-}
-```

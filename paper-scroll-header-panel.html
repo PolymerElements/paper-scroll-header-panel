@@ -50,23 +50,15 @@ that represents a header by adding a `paper-header` class to it.
       <div>Content goes here...</div>
     </paper-scroll-header-panel>
 
-Styling scroll-header-panel:
+### Styling
 
-To change background for toolbar when it is at its full size:
+The following custom properties and mixins are available for styling:
 
-    paper-scroll-header-panel {
-      --paper-scroll-header-panel-full-header: {
-        background-color: red;
-      };
-    }
-
-To change the background for toolbar when it is condensed:
-
-    paper-scroll-header-panel {
-      --paper-scroll-header-panel-condensed-header: {
-        background-color: #f4b400;
-      };
-    }
+Custom property | Description | Default
+----------------|-------------|----------
+--paper-scroll-header-panel-full-header | To change background for toolbar when it is at its full size | {}
+--paper-scroll-header-panel-condensed-header | To change the background for toolbar when it is condensed | {}
+--paper-scroll-header-container | To override or add container styles | {}
 
 @group Paper Element
 @element paper-scroll-header-panel
@@ -97,6 +89,8 @@ To change the background for toolbar when it is condensed:
 
       overflow-x: hidden;
       overflow-y: auto;
+
+      @apply(--paper-scroll-header-container);
     }
 
     #headerContainer {
