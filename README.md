@@ -9,6 +9,8 @@ Edit this file, and the bot will squash your changes :)
 
 -->
 
+[![Build Status](https://travis-ci.org/PolymerElements/paper-scroll-header-panel.svg?branch=master)](https://travis-ci.org/PolymerElements/paper-scroll-header-panel)
+
 _[Demo and API Docs](https://elements.polymer-project.org/elements/paper-scroll-header-panel)_
 
 
