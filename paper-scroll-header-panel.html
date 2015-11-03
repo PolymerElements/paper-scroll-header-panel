@@ -151,7 +151,7 @@ Custom property | Description | Default
 
   'use strict';
 
-  Polymer({
+  Polymer.PaperScrollHeaderPanel = Polymer({
 
     /**
      * Fired when the content has been scrolled.
@@ -248,10 +248,12 @@ Custom property | Description | Default
       },
 
       /**
-       * The state of the header. The initial value is `HEADER_STATE_EXPANDED`.
-       * Depending on the configuration and the `scrollTop` value,
+       * The state of the header. Depending on the configuration and the `scrollTop` value,
        * the header state could change to
-       * `HEADER_STATE_HIDDEN`, `HEADER_STATE_CONDENSED` and `HEADER_STATE_INTERPOLATED`
+       *      Polymer.PaperScrollHeaderPanel.HEADER_STATE_EXPANDED
+       *      Polymer.PaperScrollHeaderPanel.HEADER_STATE_HIDDEN
+       *      Polymer.PaperScrollHeaderPanel.HEADER_STATE_CONDENSED
+       *      Polymer.PaperScrollHeaderPanel.HEADER_STATE_INTERPOLATED
        */
       headerState: {
         type: Number,
@@ -292,39 +294,6 @@ Custom property | Description | Default
       this._scrollHandler = this._scroll.bind(this);
       this.scroller.addEventListener('scroll', this._scrollHandler);
     },
-
-    /**
-     * The header's initial state
-     *
-     * @property HEADER_STATE_EXPANDED
-     * @type number
-     */
-    HEADER_STATE_EXPANDED: 0,
-
-    /**
-     * The header's state when it's hidden.
-     *
-     * @property HEADER_STATE_HIDDEN
-     * @type number
-     */
-    HEADER_STATE_HIDDEN: 1,
-
-    /**
-     * The header's state when it's condensed.
-     *
-     * @property HEADER_STATE_CONDENSED
-     * @type number
-     */
-    HEADER_STATE_CONDENSED: 2,
-
-    /**
-     * The header's state when its progress is somewhere between
-     * the `hidden` and `condensed` state.
-     *
-     * @property HEADER_STATE_INTERPOLATED
-     * @type number
-     */
-    HEADER_STATE_INTERPOLATED: 3,
 
     /**
      * Returns the header element.
@@ -435,13 +404,14 @@ Custom property | Description | Default
      * @param {boolean} smooth true if the scroll position should be smoothly adjusted.
      */
     condense: function(smooth) {
+      var ctx = Polymer.PaperScrollHeaderPanel;
       if (this.condenses && !this.fixed && !this.noReveal) {
         switch (this.headerState) {
-          case this.HEADER_STATE_HIDDEN:
+          case ctx.HEADER_STATE_HIDDEN:
             this.scroll(this.scroller.scrollTop - (this._headerMaxDelta - this._headerMargin), smooth);
           break;
-          case this.HEADER_STATE_EXPANDED:
-          case this.HEADER_STATE_INTERPOLATED:
+          case ctx.HEADER_STATE_EXPANDED:
+          case ctx.HEADER_STATE_INTERPOLATED:
             this.scroll(this._headerMargin, smooth);
           break;
         }
@@ -560,22 +530,23 @@ Custom property | Description | Default
     },
 
     _updateScrollState: function(scrollTop) {
+      var ctx = Polymer.PaperScrollHeaderPanel;
       var deltaScrollTop = scrollTop - this._prevScrollTop;
       var y = Math.max(0, (this.noReveal) ? scrollTop : this._y + deltaScrollTop);
 
       if (y > this._headerMaxDelta) {
         y = this._headerMaxDelta;
-        this._setHeaderState(this.HEADER_STATE_HIDDEN);
+        this._setHeaderState(ctx.HEADER_STATE_HIDDEN);
 
       } else if (this.condenses && this._prevScrollTop >= scrollTop && scrollTop >= this._headerMargin) {
         y = Math.max(y, this._headerMargin);
-        this._setHeaderState(this.HEADER_STATE_CONDENSED);
+        this._setHeaderState(ctx.HEADER_STATE_CONDENSED);
 
       } else if (y === 0) {
-        this._setHeaderState(this.HEADER_STATE_EXPANDED);
+        this._setHeaderState(ctx.HEADER_STATE_EXPANDED);
 
       } else {
-        this._setHeaderState(this.HEADER_STATE_INTERPOLATED);
+        this._setHeaderState(ctx.HEADER_STATE_INTERPOLATED);
       }
 
       if (!this.fixed && y !== this._y) {
@@ -586,6 +557,11 @@ Custom property | Description | Default
       this._y = y;
     }
   });
+
+  Polymer.PaperScrollHeaderPanel.HEADER_STATE_EXPANDED = 0;
+  Polymer.PaperScrollHeaderPanel.HEADER_STATE_HIDDEN = 1;
+  Polymer.PaperScrollHeaderPanel.HEADER_STATE_CONDENSED = 2;
+  Polymer.PaperScrollHeaderPanel.HEADER_STATE_INTERPOLATED = 3;
 
 })();
 
