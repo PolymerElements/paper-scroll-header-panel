@@ -1,0 +1,152 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE
+The complete set of authors may be found at http://polymer.github.io/AUTHORS
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS
+-->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>paper-scroll-header-panel test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+  <script src="../../test-fixture/test-fixture-mocha.js"></script>
+
+  <link rel="import" href="../paper-scroll-header-panel.html">
+  <link rel="import" href="../demo/sample-content.html">
+  <link rel="import" href="../../paper-toolbar/paper-toolbar.html">
+  <link rel="import" href="../../test-fixture/test-fixture.html">
+</head>
+<body>
+
+  <test-fixture id="trivialProgress">
+    <template>
+      <paper-scroll-header-panel>
+        <!-- Drawer Content -->
+        <!-- Navigation -->
+        <!-- TODO: What if nested paper-scroll-header-panel is inside a custom element? -->
+        <nav>
+          <!-- NESTED: paper-scroll-header-panel -->
+          <!-- Drawer Scroll Header Panel -->
+          <paper-scroll-header-panel class="Drawer" drawer fixed>
+            <!-- Drawer Toolbar -->
+            <paper-toolbar id="drawer-toolbar" class="Drawer-header panel-header">
+              <span class="Drawer-title">Menu</span>
+            </paper-toolbar>
+            <paper-menu class="Drawer-widget Navigation list panel-content" id="drawer-content">
+              <a class="Navigation-link" data-route="home" href="/">
+                <iron-icon class="Navigation-icon" icon="home"></iron-icon>
+                <span>Home</span>
+              </a>
+            </paper-menu>
+          </paper-scroll-header-panel>
+        </nav>
+        <!-- Main area -->
+        <paper-toolbar id="main-toolbar">
+          Main toolbar
+        </paper-toolbar>
+        <div class="content" id="main-content">
+          <sample-content size="100"></sample-content>
+        </div>
+      </paper-scroll-header-panel>
+    </template>
+  </test-fixture>
+
+  <script>
+
+    suite('nested structural layout', function() {
+      var scrollHeaderPanel, toolbar, content;
+
+      setup(function() {
+        scrollHeaderPanel = fixture('trivialProgress');
+
+        toolbar = {
+          drawer: Polymer.dom(scrollHeaderPanel).querySelector('#drawer-toolbar'),
+          main: Polymer.dom(scrollHeaderPanel).querySelector('#main-toolbar')
+        };
+        content = {
+          drawer: Polymer.dom(scrollHeaderPanel).querySelector('#drawer-content'),
+          main: Polymer.dom(scrollHeaderPanel).querySelector('#main-content')
+        };
+      });
+
+      test('check default', function() {
+        assert.equal(scrollHeaderPanel.header, toolbar.main);
+        assert.equal(scrollHeaderPanel.content, content.main);
+        assert.equal(scrollHeaderPanel.condenses, false);
+        assert.equal(scrollHeaderPanel.noReveal, false);
+        assert.equal(scrollHeaderPanel.fixed, false);
+        assert.typeOf(scrollHeaderPanel.scroller, 'object');
+        assert.equal(scrollHeaderPanel.keepCondensedHeader, false);
+        assert.equal(scrollHeaderPanel.keepCondensedHeader, false);
+        assert.equal(scrollHeaderPanel.headerHeight, toolbar.offsetHeight);
+        assert.equal(scrollHeaderPanel.condensedHeaderHeight, Math.round(toolbar.offsetHeight * 1/3));
+      });
+
+      test('condensation', function(done) {
+        var top1 = toolbar.main.getBoundingClientRect().top;
+
+        scrollHeaderPanel.condenses = true;
+        scrollHeaderPanel.headerHeight = 150;
+        scrollHeaderPanel.condensedHeaderHeight = 50;
+        scrollHeaderPanel.scroller.scrollTop = 300;
+
+        flush(function() {
+          assert.notEqual(top1, toolbar.main.getBoundingClientRect().top)
+          done();
+        });
+      });
+
+      test('paper-header-transform event', function(done) {
+        scrollHeaderPanel.condenses = false;
+        scrollHeaderPanel.headerHeight = scrollHeaderPanel.headerHeight || 150;
+
+        scrollHeaderPanel.addEventListener('paper-header-transform', function(e) {
+          assert.typeOf(e.detail.y, 'number');
+          assert.equal(e.detail.height, scrollHeaderPanel.headerHeight);
+          assert.equal(e.detail.condensedHeight, scrollHeaderPanel.condensedHeaderHeight);
+          done();
+        });
+
+        flush(function() {
+          scrollHeaderPanel.scroller.scrollTop = 300;
+        });
+      });
+
+      test('content-scroll event', function(done) {
+        scrollHeaderPanel.condenses = false;
+
+        scrollHeaderPanel.addEventListener('content-scroll', function(e) {
+          assert.equal(e.detail.target, scrollHeaderPanel.scroller);
+          done();
+        });
+
+        flush(function() {
+          scrollHeaderPanel.scroller.scrollTop = 300;
+        });
+      });
+
+      test('custom `condensedHeaderHeight`', function(done) {
+        var CUSTOM_HEIGHT = 100;
+        scrollHeaderPanel.condensedHeaderHeight = CUSTOM_HEIGHT;
+        scrollHeaderPanel.headerHeight = CUSTOM_HEIGHT;
+
+        assert.equal(scrollHeaderPanel.condensedHeaderHeight, CUSTOM_HEIGHT);
+        assert.equal(scrollHeaderPanel.headerHeight, CUSTOM_HEIGHT);
+
+
+        done();
+
+      });
+    });
+
+  </script>
+
+</body>
+</html>
