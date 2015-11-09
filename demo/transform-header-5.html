@@ -39,12 +39,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       /* background for toolbar when it is at its full size */
       --paper-scroll-header-panel-full-header: {
-        background-image: url(images/bg9.jpg);
+        background-image: url(images/bg4.jpg);
       };
 
       /* background for toolbar when it is condensed */
       --paper-scroll-header-panel-condensed-header: {
-        background-color: var(--paper-purple-800, #6a1b9a);
+        background-color: var(--paper-light-blue-600);
       };
     }
 
@@ -55,8 +55,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       overflow: visible;
     }
 
-    paper-toolbar paper-icon-button {
+    paper-icon-button {
       margin: 0 8px;
+      --paper-icon-button-ink-color: white;
     }
 
     .bottom-text {
@@ -104,12 +105,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div class="flex"></div>
       <paper-icon-button icon="thumb-up"></paper-icon-button>
       <paper-icon-button icon="mail"></paper-icon-button>
-
       <div class="bottom indent bottom-text" self-end>
         <div>Lorem ipsum dolor sit amet</div>
         <div class="subtitle">Iisque perfecto dissentiet cum et</div>
       </div>
-
       <iron-icon class="bottom bookmark" icon="bookmark"></iron-icon>
 
     </paper-toolbar>
