@@ -295,10 +295,13 @@ Custom property | Description | Default
       'iron-resize': 'measureHeaderHeight'
     },
 
-    attached: function() {
-      this.async(this.measureHeaderHeight, 5);
+    ready: function() {
       this._scrollHandler = this._scroll.bind(this);
       this.scroller.addEventListener('scroll', this._scrollHandler);
+    },
+
+    attached: function() {
+      this.async(this.measureHeaderHeight, 5);
     },
 
     /**
