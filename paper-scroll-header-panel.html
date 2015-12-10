@@ -295,7 +295,7 @@ Custom property | Description | Default
       'iron-resize': 'measureHeaderHeight'
     },
 
-    ready: function() {
+    attached: function() {
       this.async(this.measureHeaderHeight, 5);
       this._scrollHandler = this._scroll.bind(this);
       this.scroller.addEventListener('scroll', this._scrollHandler);
