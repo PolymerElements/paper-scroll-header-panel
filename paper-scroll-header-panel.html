@@ -296,9 +296,12 @@ Custom property | Description | Default
     },
 
     ready: function() {
-      this.async(this.measureHeaderHeight, 5);
       this._scrollHandler = this._scroll.bind(this);
       this.scroller.addEventListener('scroll', this._scrollHandler);
+    },
+
+    attached: function() {
+      this.async(this.measureHeaderHeight, 1);
     },
 
     /**
