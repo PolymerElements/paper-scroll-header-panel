@@ -56,7 +56,7 @@ that represents a header by adding a `paper-header` class to it.
 
 ```html
 <paper-scroll-header-panel>
-  <paper-toolbar>Header</paper-toolbar>
+  <div class="paper-header">Header</div>
   <div>Content goes here...</div>
 </paper-scroll-header-panel>
 ```
