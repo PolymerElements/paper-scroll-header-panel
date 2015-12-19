@@ -460,20 +460,21 @@ Custom property | Description | Default
     },
 
     _setup: function() {
+      var ctx = Polymer.PaperScrollHeaderPanel;
       var s = this.scroller.style;
 
       s.paddingTop = this.fixed ? '' : this.headerHeight + 'px';
       s.top = this.fixed ? this.headerHeight + 'px' : '';
 
       if (this.fixed) {
-        this._setHeaderState(this.HEADER_STATE_EXPANDED);
+        this._setHeaderState(ctx.HEADER_STATE_EXPANDED);
         this._transformHeader(null);
       } else {
         switch (this.headerState) {
-          case this.HEADER_STATE_HIDDEN:
+          case ctx.HEADER_STATE_HIDDEN:
             this._transformHeader(this._headerMaxDelta);
             break;
-          case this.HEADER_STATE_CONDENSED:
+          case ctx.HEADER_STATE_CONDENSED:
             this._transformHeader(this._headerMargin);
             break;
         }
