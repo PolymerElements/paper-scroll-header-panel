@@ -73,6 +73,7 @@ The following custom properties and mixins are available for styling:
 | --- | --- | --- |
 | --paper-scroll-header-panel-full-header | To change background for toolbar when it is at its full size | {} |
 | --paper-scroll-header-panel-condensed-header | To change the background for toolbar when it is condensed | {} |
-| --paper-scroll-header-container | To override or add container styles | {} |
+| --paper-scroll-header-panel-container | To override or add container styles | {}
+| --paper-scroll-header-panel-header-container | To override or add header styles | {}
 
 
