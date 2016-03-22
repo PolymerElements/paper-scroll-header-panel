@@ -49,6 +49,14 @@ paper-scroll-header-panel {
 `paper-scroll-header-panel` works well with `paper-toolbar` but can use any element
 that represents a header by adding a `paper-header` class to it.
 
+Note: If the class `paper-header` is used, the header must be positioned relative or absolute. e.g.
+
+```css
+.paper-header {
+  position: relative;
+}
+```
+
 ```html
 <paper-scroll-header-panel>
   <div class="paper-header">Header</div>
