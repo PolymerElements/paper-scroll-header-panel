@@ -3,7 +3,6 @@
   "description": "A header bar with scrolling behavior",
   "version": "1.0.15",
   "license": "http://polymer.github.io/LICENSE.txt",
-  "private": true,
   "authors": "The Polymer Authors",
   "keywords": [
     "web-components",
