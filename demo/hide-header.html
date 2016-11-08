@@ -59,7 +59,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
     .spacer {
-      @apply(--layout-flex);
+      @apply --layout-flex;
     }
 
   </style>
@@ -69,17 +69,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <paper-scroll-header-panel condenses no-reveal no-dissolve>
 
-    <paper-toolbar class="tall">
-
+    <paper-toolbar slot="header" class="tall">
       <div class="spacer"></div>
       <paper-icon-button icon="search"></paper-icon-button>
-
     </paper-toolbar>
 
-    <div class="content">
-
+    <div slot="content" class="content">
       <sample-content size="100"></sample-content>
-
     </div>
 
   </paper-scroll-header-panel>
