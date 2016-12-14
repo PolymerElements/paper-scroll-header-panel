@@ -12,6 +12,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
 
 <!--
+**This element has been deprecated in favor of [app-layout](https://github.com/PolymerElements/app-layout).**
+
 Material design: [Scrolling techniques](https://www.google.com/design/spec/patterns/scrolling-techniques.html)
 
 `paper-scroll-header-panel` contains a header section and a content section.  The
@@ -306,6 +308,7 @@ Custom property | Description | Default
     ready: function() {
       this._scrollHandler = this._scroll.bind(this);
       this.scroller.addEventListener('scroll', this._scrollHandler);
+      console.warn(this.is, 'is deprecated. Please use app-layout instead!');
     },
 
     attached: function() {

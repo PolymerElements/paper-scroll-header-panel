@@ -19,6 +19,8 @@ _[Demo and API docs](https://elements.polymer-project.org/elements/paper-scroll-
 
 ##&lt;paper-scroll-header-panel&gt;
 
+**This element has been deprecated in favor of [app-layout](https://github.com/PolymerElements/app-layout).**
+
 Material design: [Scrolling techniques](https://www.google.com/design/spec/patterns/scrolling-techniques.html)
 
 `paper-scroll-header-panel` contains a header section and a content section.  The
