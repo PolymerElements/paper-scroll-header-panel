@@ -43,12 +43,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         /* background for toolbar when it is at its full size */
         --paper-scroll-header-panel-full-header: {
-          background-image: url(images/bg2.jpg);
-        };
-
-        /* background for toolbar when it is condensed */
-        --paper-scroll-header-panel-condensed-header: {
-          background-color: transparent;
+          background-color: var(--paper-teal-400);
         };
       }
 
@@ -101,7 +96,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <paper-scroll-header-panel condenses condensed-header-height="64">
 
     <paper-toolbar slot="header" class="medium-tall">
-      <div class="search-box bottom">
+      <div slot="top" class="search-box bottom">
         <iron-icon icon="menu"></iron-icon>
         <input>
         <iron-icon icon="av:mic"></iron-icon>

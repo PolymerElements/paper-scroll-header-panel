@@ -38,6 +38,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background-color: var(--paper-grey-200, #eee);
 
         /* background for toolbar when it is at its full size */
+        /* crbug/618165: url(...) values cannot be used in custom properties */
         --paper-scroll-header-panel-full-header: {
           background-color: var(--paper-deep-purple-500);
         };
@@ -80,10 +81,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <paper-scroll-header-panel condenses>
 
     <paper-toolbar slot="header" class="tall">
-      <paper-icon-button icon="arrow-back"></paper-icon-button>
-      <div class="spacer"></div>
-      <paper-icon-button icon="search"></paper-icon-button>
-      <paper-icon-button icon="more-vert"></paper-icon-button>
+      <paper-icon-button slot="top" icon="arrow-back"></paper-icon-button>
+      <div slot="top" class="spacer"></div>
+      <paper-icon-button slot="top" icon="search"></paper-icon-button>
+      <paper-icon-button slot="top" icon="more-vert"></paper-icon-button>
       <div slot="bottom" class="title">Title</div>
     </paper-toolbar>
 

@@ -27,8 +27,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="../../iron-flex-layout/iron-flex-layout.html">
   <link rel="import" href="sample-content.html">
 
-  <link rel="stylesheet" href="../../paper-styles/demo.css">
-
   <custom-style>
     <style is="custom-style">
 
@@ -42,12 +40,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         /* background for toolbar when it is at its full size */
         --paper-scroll-header-panel-full-header: {
-          background-image: url(images/bg4.jpg);
+          background-color: var(--paper-teal-400);
         };
 
         /* background for toolbar when it is condensed */
         --paper-scroll-header-panel-condensed-header: {
-          background-color: var(--paper-light-blue-600);
+          background-color: var( --paper-indigo-700);
         };
       }
 
@@ -108,10 +106,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <paper-toolbar slot="header">
 
-      <paper-icon-button icon="arrow-back"></paper-icon-button>
-      <div class="spacer"></div>
-      <paper-icon-button icon="thumb-up"></paper-icon-button>
-      <paper-icon-button icon="mail"></paper-icon-button>
+      <paper-icon-button slot="top" icon="arrow-back"></paper-icon-button>
+      <div  slot="top" class="spacer"></div>
+      <paper-icon-button slot="top" icon="thumb-up"></paper-icon-button>
+      <paper-icon-button slot="top" icon="mail"></paper-icon-button>
       <div slot="bottom" class="bottom indent bottom-text" self-end>
         <div>Lorem ipsum dolor sit amet</div>
         <div class="subtitle">Iisque perfecto dissentiet cum et</div>

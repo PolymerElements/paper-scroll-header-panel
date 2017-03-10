@@ -24,7 +24,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="../../paper-icon-button/paper-icon-button.html">
   <link rel="import" href="../../paper-styles/color.html">
   <link rel="import" href="../../iron-flex-layout/iron-flex-layout.html">
-  <link rel="stylesheet" href="../../paper-styles/demo.css">
   <link rel="import" href="sample-content.html">
   
   <custom-style>
@@ -65,10 +64,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <paper-toolbar slot="header" class="tall">
 
-      <paper-icon-button icon="arrow-back"></paper-icon-button>
-      <div class="spacer"></div>
-      <paper-icon-button icon="search"></paper-icon-button>
-      <paper-icon-button icon="more-vert"></paper-icon-button>
+      <paper-icon-button slot="top" icon="arrow-back"></paper-icon-button>
+      <div slot="top" class="spacer"></div>
+      <paper-icon-button slot="top" icon="search"></paper-icon-button>
+      <paper-icon-button slot="top" icon="more-vert"></paper-icon-button>
 
       <div slot="bottom" class="bottom title">Title</div>
 

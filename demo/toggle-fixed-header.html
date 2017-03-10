@@ -27,8 +27,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="../../iron-flex-layout/iron-flex-layout.html">
   <link rel="import" href="sample-content.html">
 
-  <link rel="stylesheet" href="../../paper-styles/demo.css">
-
   <custom-style>
     <style is="custom-style">
 
@@ -42,13 +40,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         /* background for toolbar when it is at its full size */
         --paper-scroll-header-panel-full-header: {
-          background-image: url(images/bg2.jpg);
-          background-position: left bottom;
+          background-color: var(--google-yellow-500);
         };
 
         /* background for toolbar when it is condensed */
         --paper-scroll-header-panel-condensed-header: {
-          background-color: var(--google-yellow-500, #f4b400);
+          background-color: var(--google-yellow-700);
         };
       }
 
@@ -84,12 +81,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <paper-toolbar slot="header" class="tall">
 
-      <paper-icon-button icon="arrow-back"></paper-icon-button>
-      <div class="spacer"></div>
-      <paper-icon-button icon="search"></paper-icon-button>
-      <paper-icon-button icon="more-vert"></paper-icon-button>
+      <paper-icon-button slot="top" icon="arrow-back"></paper-icon-button>
+      <div slot="top" class="spacer"></div>
+      <paper-icon-button  slot="top" icon="search"></paper-icon-button>
+      <paper-icon-button slot="top" icon="more-vert"></paper-icon-button>
 
-      <div class="bottom indent title">Title</div>
+      <div slot="bottom" class="title">Title</div>
     </paper-toolbar>
 
     <div slot="content" class="content">
