@@ -17,7 +17,7 @@ thing! https://github.com/PolymerLabs/tedium/issues
 _[Demo and API docs](https://elements.polymer-project.org/elements/paper-scroll-header-panel)_
 
 
-##&lt;paper-scroll-header-panel&gt;
+## &lt;paper-scroll-header-panel&gt;
 
 **This element has been deprecated in favor of [app-layout](https://github.com/PolymerElements/app-layout).**
 
@@ -86,3 +86,13 @@ The following custom properties and mixins are available for styling:
 | --paper-scroll-header-panel-condensed-header | To change the background for toolbar when it is condensed | {} |
 | --paper-scroll-header-panel-container | To override or add container styles | {} |
 | --paper-scroll-header-panel-header-container | To override or add header styles | {} |
+
+### Changes in 2.0
+
+Distribution is now done with `slot="header"` and `slot="content"` attributes (previously, `paper-toolbar` or another element with the `.paper-header` class would be distributed as the header, and other elements would be distributed as the content):
+
+    <paper-scroll-header-panel>
+      <div class="paper-header" slot="header">Header</div>
+      <div slot="content">Content goes here...</div>
+    </paper-scroll-header-panel>
+    
