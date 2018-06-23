@@ -1,0 +1,82 @@
+{
+  "files": {
+    "paper-scroll-header-panel.html": {
+      "convertedUrl": "paper-scroll-header-panel.js",
+      "exports": {
+        "Polymer.PaperScrollHeaderPanel": "PaperScrollHeaderPanel"
+      }
+    },
+    "index.html": {
+      "convertedUrl": "index.html",
+      "exports": {}
+    },
+    "demo/drawer-panel.html": {
+      "convertedUrl": "demo/drawer-panel.html",
+      "exports": {}
+    },
+    "demo/sample-content.html": {
+      "convertedUrl": "demo/sample-content.js",
+      "exports": {}
+    },
+    "demo/hide-header.html": {
+      "convertedUrl": "demo/hide-header.html",
+      "exports": {}
+    },
+    "demo/index.html": {
+      "convertedUrl": "demo/index.html",
+      "exports": {}
+    },
+    "demo/keep-header.html": {
+      "convertedUrl": "demo/keep-header.html",
+      "exports": {}
+    },
+    "demo/lorem-ipsum.html": {
+      "convertedUrl": "demo/lorem-ipsum.html",
+      "exports": {}
+    },
+    "demo/toggle-fixed-header.html": {
+      "convertedUrl": "demo/toggle-fixed-header.html",
+      "exports": {}
+    },
+    "demo/transform-header-1.html": {
+      "convertedUrl": "demo/transform-header-1.html",
+      "exports": {}
+    },
+    "demo/transform-header-2.html": {
+      "convertedUrl": "demo/transform-header-2.html",
+      "exports": {}
+    },
+    "demo/transform-header-3.html": {
+      "convertedUrl": "demo/transform-header-3.html",
+      "exports": {}
+    },
+    "demo/transform-header-4.html": {
+      "convertedUrl": "demo/transform-header-4.html",
+      "exports": {}
+    },
+    "demo/transform-header-5.html": {
+      "convertedUrl": "demo/transform-header-5.html",
+      "exports": {}
+    },
+    "demo/transform-header-6.html": {
+      "convertedUrl": "demo/transform-header-6.html",
+      "exports": {}
+    },
+    "test/basic.html": {
+      "convertedUrl": "test/basic.html",
+      "exports": {}
+    },
+    "test/header-state.html": {
+      "convertedUrl": "test/header-state.html",
+      "exports": {}
+    },
+    "test/index.html": {
+      "convertedUrl": "test/index.html",
+      "exports": {}
+    },
+    "test/scroll.html": {
+      "convertedUrl": "test/scroll.html",
+      "exports": {}
+    }
+  }
+}
