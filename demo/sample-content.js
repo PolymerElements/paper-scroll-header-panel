@@ -1,15 +1,16 @@
 /**
 @license
 Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+This code may only be used under the BSD style license found at
+http://polymer.github.io/LICENSE.txt The complete set of authors may be found at
+http://polymer.github.io/AUTHORS.txt The complete set of contributors may be
+found at http://polymer.github.io/CONTRIBUTORS.txt Code distributed by Google as
+part of the polymer project is also subject to an additional IP rights grant
+found at http://polymer.github.io/PATENTS.txt
 */
-import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
+import {Polymer} from '@polymer/polymer/lib/legacy/polymer-fn.js';
 
-import { html as html$0 } from '@polymer/polymer/lib/utils/html-tag.js';
+import {html as html$0} from '@polymer/polymer/lib/utils/html-tag.js';
 
 var strings = [
   'Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.',
@@ -43,25 +44,22 @@ Polymer({
 
   is: 'sample-content',
 
-  properties: {
-    size: {
-      type: Number,
-      value: 0,
-      observer: 'sizeChanged'
-    }
-  },
+  properties: {size: {type: Number, value: 0, observer: 'sizeChanged'}},
 
   sizeChanged: function() {
     var html = '';
     for (var i = 0; i < this.size; i++) {
       html +=
-        '<div style="border: 1px solid #bebebe; padding: 16px; margin: 16px; border-radius: 5px; background-color: #fff; color: #555;">' +
-        '<div style="display: inline-block; height: 64px; width: 64px; border-radius: 50%; background: #ddd; line-height: 64px; font-size: 30px; color: #666; text-align: center;">'+ randomLetter() + '</div>' +
-        '<div style="font-size: 22px; padding: 8px 0 16px; color: #888;">' + randomString() + '</div>' +
-        '<div style="font-size: 16px; padding-bottom: 8px;">' + randomString() + '</div>' +
-        '<div style="font-size: 12px;">' + randomString() + '</div>' +
-        '<div style="font-size: 12px;">' + randomString() + '</div>' +
-        '</div>';
+          '<div style="border: 1px solid #bebebe; padding: 16px; margin: 16px; border-radius: 5px; background-color: #fff; color: #555;">' +
+          '<div style="display: inline-block; height: 64px; width: 64px; border-radius: 50%; background: #ddd; line-height: 64px; font-size: 30px; color: #666; text-align: center;">' +
+          randomLetter() + '</div>' +
+          '<div style="font-size: 22px; padding: 8px 0 16px; color: #888;">' +
+          randomString() + '</div>' +
+          '<div style="font-size: 16px; padding-bottom: 8px;">' +
+          randomString() + '</div>' +
+          '<div style="font-size: 12px;">' + randomString() + '</div>' +
+          '<div style="font-size: 12px;">' + randomString() + '</div>' +
+          '</div>';
       this.$.content.innerHTML = html;
     }
   }

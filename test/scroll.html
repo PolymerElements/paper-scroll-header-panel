@@ -14,14 +14,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <title>paper-scroll-header-panel test</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
-  <script src="../../../wct-browser-legacy/browser.js"></script>
-  <script src="../../test-fixture/test-fixture-mocha.js"></script>
-
-  <script type="module" src="../paper-scroll-header-panel.js"></script>
-  <script type="module" src="../demo/sample-content.js"></script>
-  <script type="module" src="../../paper-toolbar/paper-toolbar.js"></script>
-  <script type="module" src="../../test-fixture/test-fixture.js"></script>
+  <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+  <script src="../node_modules/wct-browser-legacy/browser.js"></script>
+  <script src="../node_modules/@polymer/test-fixture/test-fixture-mocha.js"></script>
 </head>
 <body>
 
@@ -38,103 +33,106 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </test-fixture>
 
   <script type="module">
-import { PaperScrollHeaderPanel } from '../paper-scroll-header-panel.js';
-import '../demo/sample-content.js';
-import '@polymer/paper-toolbar/paper-toolbar.js';
-import '@polymer/test-fixture/test-fixture.js';
-import { Base } from '@polymer/polymer/polymer-legacy.js';
+    import '../demo/sample-content.js';
+    import '@polymer/paper-toolbar/paper-toolbar.js';
 
-suite('scroll', function() {
-  var scrollHeaderPanel;
+    import {Base} from '@polymer/polymer/polymer-legacy.js';
 
-  setup(function() {
-    scrollHeaderPanel = fixture('trivialProgress');
-    scrollHeaderPanel.measureHeaderHeight();
-  });
+    import {PaperScrollHeaderPanel} from '../paper-scroll-header-panel.js';
 
-  teardown(function() {
-    scrollHeaderPanel.scroll(0);
-  });
+    suite('scroll', function() {
+      var scrollHeaderPanel;
 
-  test('scroll smoothly', function(done) {
-    var destination = 100;
-    var adjustments = 0;
-    
-    function check() {
-      if (scrollHeaderPanel.scroller.scrollTop === destination) {
-        assert.notEqual(adjustments, 0);
-        done();
-        return;
-      }
-      adjustments++;
-      setTimeout(check, 0);
-    }
-    scrollHeaderPanel.scroll(destination, true);
-    check();
-  });
+      setup(function() {
+        scrollHeaderPanel = fixture('trivialProgress');
+        scrollHeaderPanel.measureHeaderHeight();
+      });
 
-  test('condense smoothly', function(done) {
-    flush(function() {
-      var destination = 100;
-      var adjustments = 0;
-      function check() {
-        if (scrollHeaderPanel.headerState === PaperScrollHeaderPanel.HEADER_STATE_CONDENSED) {
-          assert.notEqual(adjustments, 0);
-          done();
-          return;
+      teardown(function() {
+        scrollHeaderPanel.scroll(0);
+      });
+
+      test('scroll smoothly', function(done) {
+        var destination = 100;
+        var adjustments = 0;
+
+        function check() {
+          if (scrollHeaderPanel.scroller.scrollTop === destination) {
+            assert.notEqual(adjustments, 0);
+            done();
+            return;
+          }
+          adjustments++;
+          setTimeout(check, 0);
         }
-        adjustments++;
-        setTimeout(check, 1);
-      }
-      scrollHeaderPanel.condense(true);
-      check();
-    });
-  });
+        scrollHeaderPanel.scroll(destination, true);
+        check();
+      });
 
-  test('condense immediately', function(done) {
-    flush(function() {
-      scrollHeaderPanel.condense();
-      assert.equal(scrollHeaderPanel.headerState, PaperScrollHeaderPanel.HEADER_STATE_CONDENSED);
-      done();
-    });
-  });
+      test('condense smoothly', function(done) {
+        flush(function() {
+          var destination = 100;
+          var adjustments = 0;
+          function check() {
+            if (scrollHeaderPanel.headerState ===
+                PaperScrollHeaderPanel.HEADER_STATE_CONDENSED) {
+              assert.notEqual(adjustments, 0);
+              done();
+              return;
+            }
+            adjustments++;
+            setTimeout(check, 1);
+          }
+          scrollHeaderPanel.condense(true);
+          check();
+        });
+      });
 
-  test('scroll to top smoothly', function(done) {
-    scrollHeaderPanel.scroll(100);
-
-    flush(function() {
-      var adjustments = 0;
-      function check() {
-        if (scrollHeaderPanel.scroller.scrollTop === 0) {
-          assert.notEqual(adjustments, 0);
+      test('condense immediately', function(done) {
+        flush(function() {
+          scrollHeaderPanel.condense();
+          assert.equal(
+              scrollHeaderPanel.headerState,
+              PaperScrollHeaderPanel.HEADER_STATE_CONDENSED);
           done();
-          return;
-        }
-        adjustments++;
-        setTimeout(check, 0);
-      }
-      scrollHeaderPanel.scrollToTop(true);
-      check();
+        });
+      });
+
+      test('scroll to top smoothly', function(done) {
+        scrollHeaderPanel.scroll(100);
+
+        flush(function() {
+          var adjustments = 0;
+          function check() {
+            if (scrollHeaderPanel.scroller.scrollTop === 0) {
+              assert.notEqual(adjustments, 0);
+              done();
+              return;
+            }
+            adjustments++;
+            setTimeout(check, 0);
+          }
+          scrollHeaderPanel.scrollToTop(true);
+          check();
+        });
+      });
+
+      test('scroll to top immediately', function(done) {
+        scrollHeaderPanel.scroll(100);
+
+        flush(function() {
+          assert.equal(scrollHeaderPanel.scroller.scrollTop, 100);
+
+          scrollHeaderPanel.scrollToTop();
+
+          Base.async(function() {
+            assert.equal(scrollHeaderPanel.scroller.scrollTop, 0);
+            done();
+          }, 100);
+        });
+      });
     });
-  });
-
-  test('scroll to top immediately', function(done) {
-    scrollHeaderPanel.scroll(100);
-
-    flush(function() {
-      assert.equal(scrollHeaderPanel.scroller.scrollTop, 100);
-
-      scrollHeaderPanel.scrollToTop();
-
-      Base.async(function() {
-        assert.equal(scrollHeaderPanel.scroller.scrollTop, 0);
-        done();
-      }, 100);
-    });
-  });
-
-});
-</script>
+  </script>
 
 </body>
 </html>
