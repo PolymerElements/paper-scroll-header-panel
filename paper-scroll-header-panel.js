@@ -1,26 +1,40 @@
 /**
 @license
 Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+This code may only be used under the BSD style license found at
+http://polymer.github.io/LICENSE.txt The complete set of authors may be found at
+http://polymer.github.io/AUTHORS.txt The complete set of contributors may be
+found at http://polymer.github.io/CONTRIBUTORS.txt Code distributed by Google as
+part of the polymer project is also subject to an additional IP rights grant
+found at http://polymer.github.io/PATENTS.txt
 */
+import '@polymer/polymer/polymer-legacy.js';
+
+import {IronResizableBehavior} from '@polymer/iron-resizable-behavior/iron-resizable-behavior.js';
+import {Polymer as Polymer$0} from '@polymer/polymer/lib/legacy/polymer-fn.js';
+import {dom} from '@polymer/polymer/lib/legacy/polymer.dom.js';
+import {html} from '@polymer/polymer/lib/utils/html-tag.js';
+
 /**
-**This element has been deprecated in favor of [app-layout](https://github.com/PolymerElements/app-layout).**
+**This element has been deprecated in favor of
+[app-layout](https://github.com/PolymerElements/app-layout).**
 
-Material design: [Scrolling techniques](https://www.google.com/design/spec/patterns/scrolling-techniques.html)
+Material design: [Scrolling
+techniques](https://www.google.com/design/spec/patterns/scrolling-techniques.html)
 
-`paper-scroll-header-panel` contains a header section and a content section.  The
+`paper-scroll-header-panel` contains a header section and a content section. The
 header is initially on the top part of the view but it scrolls away with the
 rest of the scrollable content. Upon scrolling slightly up at any point, the
 header scrolls back into view. This saves screen space and allows users to
 access important controls by easily moving them back to the view.
 
-__Important:__ The `paper-scroll-header-panel` will not display if its parent does not have a height.
+__Important:__ The `paper-scroll-header-panel` will not display if its parent
+does not have a height.
 
-Using [layout classes](https://www.polymer-project.org/1.0/docs/migration.html#layout-attributes) or custom properties, you can easily make the `paper-scroll-header-panel` fill the screen
+Using [layout
+classes](https://www.polymer-project.org/1.0/docs/migration.html#layout-attributes)
+or custom properties, you can easily make the `paper-scroll-header-panel` fill
+the screen
 
 ```html
 <body class="fullbleed layout vertical">
@@ -33,7 +47,8 @@ Using [layout classes](https://www.polymer-project.org/1.0/docs/migration.html#l
 </body>
 ```
 
-or, if you would prefer to do it in CSS, just give `html`, `body`, and `paper-scroll-header-panel` a height of 100%:
+or, if you would prefer to do it in CSS, just give `html`, `body`, and
+`paper-scroll-header-panel` a height of 100%:
 
 ```css
 html, body {
@@ -45,10 +60,11 @@ paper-scroll-header-panel {
 }
 ```
 
-`paper-scroll-header-panel` works well with `paper-toolbar` but can use any element
-that represents a header by adding a `paper-header` class to it.
+`paper-scroll-header-panel` works well with `paper-toolbar` but can use any
+element that represents a header by adding a `paper-header` class to it.
 
-Note: If the class `paper-header` is used, the header must be positioned relative or absolute. e.g.
+Note: If the class `paper-header` is used, the header must be positioned
+relative or absolute. e.g.
 
 ```css
 .paper-header {
@@ -70,10 +86,13 @@ The following custom properties and mixins are available for styling:
 
 Custom property | Description | Default
 ----------------|-------------|----------
---paper-scroll-header-panel-full-header | To change background for toolbar when it is at its full size | {}
---paper-scroll-header-panel-condensed-header | To change the background for toolbar when it is condensed | {}
+--paper-scroll-header-panel-full-header | To change background for toolbar when
+it is at its full size | {}
+--paper-scroll-header-panel-condensed-header | To change the background for
+toolbar when it is condensed | {}
 --paper-scroll-header-panel-container | To override or add container styles | {}
---paper-scroll-header-panel-header-container | To override or add header styles | {}
+--paper-scroll-header-panel-header-container | To override or add header styles
+| {}
 
 @group Paper Element
 @element paper-scroll-header-panel
@@ -89,18 +108,6 @@ Custom property | Description | Default
 @demo demo/drawer-panel.html Combine with paper-drawer-panel
 @hero hero.svg
 */
-/*
-  FIXME(polymer-modulizer): the above comments were extracted
-  from HTML and may be out of place here. Review them and
-  then delete this comment!
-*/
-import '@polymer/polymer/polymer-legacy.js';
-
-import { IronResizableBehavior } from '@polymer/iron-resizable-behavior/iron-resizable-behavior.js';
-import { Polymer as Polymer$0 } from '@polymer/polymer/lib/legacy/polymer-fn.js';
-import { html } from '@polymer/polymer/lib/utils/html-tag.js';
-import { dom } from '@polymer/polymer/lib/legacy/polymer.dom.js';
-
 export const PaperScrollHeaderPanel = Polymer$0({
   _template: html`
     <style>
@@ -192,9 +199,7 @@ export const PaperScrollHeaderPanel = Polymer$0({
 
   is: 'paper-scroll-header-panel',
 
-  behaviors: [
-    IronResizableBehavior
-  ],
+  behaviors: [IronResizableBehavior],
 
   properties: {
 
@@ -202,42 +207,27 @@ export const PaperScrollHeaderPanel = Polymer$0({
      * If true, the header's height will condense to `condensedHeaderHeight`
      * as the user scrolls down from the top of the content area.
      */
-    condenses: {
-      type: Boolean,
-      value: false
-    },
+    condenses: {type: Boolean, value: false},
 
     /**
      * If true, no cross-fade transition from one background to another.
      */
-    noDissolve: {
-      type: Boolean,
-      value: false
-    },
+    noDissolve: {type: Boolean, value: false},
 
     /**
      * If true, the header doesn't slide back in when scrolling back up.
      */
-    noReveal: {
-      type: Boolean,
-      value: false
-    },
+    noReveal: {type: Boolean, value: false},
 
     /**
      * If true, the header is fixed to the top and never moves away.
      */
-    fixed: {
-      type: Boolean,
-      value: false
-    },
+    fixed: {type: Boolean, value: false},
 
     /**
      * If true, the condensed header is always shown and does not move away.
      */
-    keepCondensedHeader: {
-      type: Boolean,
-      value: false
-    },
+    keepCondensedHeader: {type: Boolean, value: false},
 
     /**
      * The height of the header when it is at its full size.
@@ -246,9 +236,7 @@ export const PaperScrollHeaderPanel = Polymer$0({
      * changes later the user needs to either set this value to reflect the
      * new height or invoke `measureHeaderHeight()`.
      */
-    headerHeight: {
-      type: Number
-    },
+    headerHeight: {type: Number},
 
     /**
      * The height of the header when it is condensed.
@@ -256,41 +244,27 @@ export const PaperScrollHeaderPanel = Polymer$0({
      * By default, `condensedHeaderHeight` is 1/3 of `headerHeight` unless
      * this is specified.
      */
-    condensedHeaderHeight: {
-      type: Number,
-      value: 0
-    },
+    condensedHeaderHeight: {type: Number, value: 0},
 
     /**
      * By default, the top part of the header stays when the header is being
      * condensed.  Set this to true if you want the top part of the header
      * to be scrolled away.
      */
-    scrollAwayTopbar: {
-      type: Boolean,
-      value: false
-    },
+    scrollAwayTopbar: {type: Boolean, value: false},
 
     /**
-     * The state of the header. Depending on the configuration and the `scrollTop` value,
-     * the header state could change to
+     * The state of the header. Depending on the configuration and the
+     * `scrollTop` value, the header state could change to
      *      Polymer.PaperScrollHeaderPanel.HEADER_STATE_EXPANDED
      *      Polymer.PaperScrollHeaderPanel.HEADER_STATE_HIDDEN
      *      Polymer.PaperScrollHeaderPanel.HEADER_STATE_CONDENSED
      *      Polymer.PaperScrollHeaderPanel.HEADER_STATE_INTERPOLATED
      */
-    headerState: {
-      type: Number,
-      readOnly: true,
-      notify:true,
-      value: 0
-    },
+    headerState: {type: Number, readOnly: true, notify: true, value: 0},
 
     /** @type {number|null} */
-    _defaultCondsensedHeaderHeight: {
-      type: Number,
-      value: 0
-    }
+    _defaultCondsensedHeaderHeight: {type: Number, value: 0}
   },
 
   observers: [
@@ -300,9 +274,7 @@ export const PaperScrollHeaderPanel = Polymer$0({
     '_condensesChanged(condenses, headerHeight)',
   ],
 
-  listeners: {
-    'iron-resize': 'measureHeaderHeight'
-  },
+  listeners: {'iron-resize': 'measureHeaderHeight'},
 
   ready: function() {
     this._scrollHandler = this._scroll.bind(this);
@@ -377,14 +349,15 @@ export const PaperScrollHeaderPanel = Polymer$0({
    */
   scroll: function(top, smooth) {
     // the scroll event will trigger _updateScrollState directly,
-    // However, _updateScrollState relies on the previous `scrollTop` to update the states.
-    // Calling _updateScrollState will ensure that the states are synced correctly.
+    // However, _updateScrollState relies on the previous `scrollTop` to update
+    // the states. Calling _updateScrollState will ensure that the states are
+    // synced correctly.
 
     if (smooth) {
       // TODO(blasten): use CSS scroll-behavior once it ships in Chrome.
       var easingFn = function easeOutQuad(t, b, c, d) {
         t /= d;
-        return -c * t*(t-2) + b;
+        return -c * t * (t - 2) + b;
       };
       var animationId = Math.random();
       var duration = 200;
@@ -403,10 +376,10 @@ export const PaperScrollHeaderPanel = Polymer$0({
           this._updateScrollState(top);
 
         } else if (this._currentAnimationId === animationId) {
-          this.scroller.scrollTop = easingFn(elapsedTime, currentScrollTop, deltaScrollTop, duration);
+          this.scroller.scrollTop =
+              easingFn(elapsedTime, currentScrollTop, deltaScrollTop, duration);
           requestAnimationFrame(updateFrame.bind(this));
         }
-
       }).call(this);
 
     } else {
@@ -416,21 +389,24 @@ export const PaperScrollHeaderPanel = Polymer$0({
   },
 
   /**
-    * Condense the header.
-    *
-    * @method condense
-    * @param {boolean} smooth true if the scroll position should be smoothly adjusted.
-    */
+   * Condense the header.
+   *
+   * @method condense
+   * @param {boolean} smooth true if the scroll position should be smoothly adjusted.
+   */
   condense: function(smooth) {
     if (this.condenses && !this.fixed && !this.noReveal) {
       switch (this.headerState) {
         case 1:
-          this.scroll(this.scroller.scrollTop - (this._headerMaxDelta - this._headerMargin), smooth);
-        break;
+          this.scroll(
+              this.scroller.scrollTop -
+                  (this._headerMaxDelta - this._headerMargin),
+              smooth);
+          break;
         case 0:
         case 3:
           this.scroll(this._headerMargin, smooth);
-        break;
+          break;
       }
     }
   },
@@ -447,7 +423,7 @@ export const PaperScrollHeaderPanel = Polymer$0({
 
   _headerHeightChanged: function(headerHeight) {
     if (this._defaultCondsensedHeaderHeight !== null) {
-      this._defaultCondsensedHeaderHeight = Math.round(headerHeight * 1/3);
+      this._defaultCondsensedHeaderHeight = Math.round(headerHeight * 1 / 3);
       this.condensedHeaderHeight = this._defaultCondsensedHeaderHeight;
     }
   },
@@ -480,10 +456,10 @@ export const PaperScrollHeaderPanel = Polymer$0({
       switch (this.headerState) {
         case 1:
           this._transformHeader(this._headerMaxDelta);
-        break;
+          break;
         case 2:
           this._transformHeader(this._headerMargin);
-        break;
+          break;
       }
     }
   },
@@ -495,33 +471,33 @@ export const PaperScrollHeaderPanel = Polymer$0({
       this._condenseHeader(y);
     }
 
-    this.fire('paper-header-transform',
-      { y: y,
-        height: this.headerHeight,
-        condensedHeight: this.condensedHeaderHeight
-      }
-    );
+    this.fire('paper-header-transform', {
+      y: y,
+      height: this.headerHeight,
+      condensedHeight: this.condensedHeaderHeight
+    });
   },
 
   _condenseHeader: function(y) {
     var reset = (y === null);
 
     // adjust top bar in paper-header so the top bar stays at the top
-    if (!this.scrollAwayTopbar && this.header && this.header.$ && this.header.$.topBar) {
-      this._translateY(this.header.$.topBar,
-          reset ? null : Math.min(y, this._headerMargin));
+    if (!this.scrollAwayTopbar && this.header && this.header.$ &&
+        this.header.$.topBar) {
+      this._translateY(
+          this.header.$.topBar, reset ? null : Math.min(y, this._headerMargin));
     }
     // transition header bg
     if (!this.noDissolve) {
-      this.$.headerBg.style.opacity = reset ? '' :
-          ( (this._headerMargin - y) / this._headerMargin);
+      this.$.headerBg.style.opacity =
+          reset ? '' : ((this._headerMargin - y) / this._headerMargin);
     }
     // adjust header bg so it stays at the center
     this._translateY(this.$.headerBg, reset ? null : y / 2);
     // transition condensed header bg
     if (!this.noDissolve) {
-      this.$.condensedHeaderBg.style.opacity = reset ? '' :
-          (y / this._headerMargin);
+      this.$.condensedHeaderBg.style.opacity =
+          reset ? '' : (y / this._headerMargin);
 
       // adjust condensed header bg so it stays at the center
       this._translateY(this.$.condensedHeaderBg, reset ? null : y / 2);
@@ -537,12 +513,7 @@ export const PaperScrollHeaderPanel = Polymer$0({
     if (this.header) {
       this._updateScrollState(this.scroller.scrollTop);
 
-      this.fire('content-scroll', {
-        target: this.scroller
-      },
-      {
-        cancelable: false
-      });
+      this.fire('content-scroll', {target: this.scroller}, {cancelable: false});
     }
   },
 
