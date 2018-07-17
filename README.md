@@ -1,27 +1,10 @@
-
-<!---
-
-This README is automatically generated from the comments in these files:
-paper-scroll-header-panel.html
-
-Edit those files, and our readme bot will duplicate them over here!
-Edit this file, and the bot will squash your changes :)
-
-The bot does some handling of markdown. Please file a bug if it does the wrong
-thing! https://github.com/PolymerLabs/tedium/issues
-
--->
-
+[![Published on NPM](https://img.shields.io/npm/v/@polymer/paper-scroll-header-panel.svg)](https://www.npmjs.com/package/@polymer/paper-scroll-header-panel)
 [![Build status](https://travis-ci.org/PolymerElements/paper-scroll-header-panel.svg?branch=master)](https://travis-ci.org/PolymerElements/paper-scroll-header-panel)
-
-_[Demo and API docs](https://elements.polymer-project.org/elements/paper-scroll-header-panel)_
-
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://webcomponents.org/element/@polymer/paper-scroll-header-panel)
 
 ## &lt;paper-scroll-header-panel&gt;
 
 **This element has been deprecated in favor of [app-layout](https://github.com/PolymerElements/app-layout).**
-
-Material design: [Scrolling techniques](https://www.google.com/design/spec/patterns/scrolling-techniques.html)
 
 `paper-scroll-header-panel` contains a header section and a content section.  The
 header is initially on the top part of the view but it scrolls away with the
@@ -30,31 +13,6 @@ header scrolls back into view.  This saves screen space and allows users to
 access important controls by easily moving them back to the view.
 
 __Important:__ The `paper-scroll-header-panel` will not display if its parent does not have a height.
-
-Using [layout classes](https://www.polymer-project.org/1.0/docs/migration.html#layout-attributes) or custom properties, you can easily make the `paper-scroll-header-panel` fill the screen
-
-```html
-<body class="fullbleed layout vertical">
-  <paper-scroll-header-panel class="flex">
-    <paper-toolbar slot="header">
-      <div>Hello World!</div>
-    </paper-toolbar>
-    <div slot="content">Content goes here...</div>
-  </paper-scroll-header-panel>
-</body>
-```
-
-or, if you would prefer to do it in CSS, just give `html`, `body`, and `paper-scroll-header-panel` a height of 100%:
-
-```css
-html, body {
-  height: 100%;
-  margin: 0;
-}
-paper-scroll-header-panel {
-  height: 100%;
-}
-```
 
 `paper-scroll-header-panel` works well with `paper-toolbar` but can use any element
 that represents a header by adding a `paper-header` class to it.
@@ -87,12 +45,88 @@ The following custom properties and mixins are available for styling:
 | --paper-scroll-header-panel-container | To override or add container styles | {} |
 | --paper-scroll-header-panel-header-container | To override or add header styles | {} |
 
-### Changes in 2.0
+See: [Documentation](https://www.webcomponents.org/element/@polymer/paper-scroll-header-panel),
+  [Demo](https://www.webcomponents.org/element/@polymer/paper-scroll-header-panel/demo/demo/index.html).
 
-Distribution is now done with `slot="header"` and `slot="content"` attributes (previously, `paper-toolbar` or another element with the `.paper-header` class would be distributed as the header, and other elements would be distributed as the content):
+## Usage
 
+### Installation
+```
+npm install --save @polymer/paper-scroll-header-panel
+```
+
+### In an html file
+```html
+<html>
+  <head>
+    <script type="module">
+      import '@polymer/paper-scroll-header-panel/paper-scroll-header-panel.js';
+      import '@polymer/paper-toolbar/paper-toolbar.js';
+    </script>
+    <style>
+      html, body {
+        margin: 0;
+      }
+      paper-scroll-header-panel {
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
     <paper-scroll-header-panel>
-      <div class="paper-header" slot="header">Header</div>
+      <paper-toolbar slot="header">
+        <div>Hello World!</div>
+      </paper-toolbar>
       <div slot="content">Content goes here...</div>
     </paper-scroll-header-panel>
-    
+  </body>
+</html>
+```
+### In a Polymer 3 element
+```js
+import {PolymerElement, html} from '@polymer/polymer';
+import '@polymer/paper-scroll-header-panel/paper-scroll-header-panel.js';
+import '@polymer/paper-toolbar/paper-toolbar.js';
+
+class SampleElement extends PolymerElement {
+  static get template() {
+    return html`
+      <style>
+        paper-scroll-header-panel {
+          height: 100vh;
+        }
+      </style>
+      <paper-scroll-header-panel>
+        <paper-toolbar slot="header">
+          <div>Hello World!</div>
+        </paper-toolbar>
+        <div slot="content">Content goes here...</div>
+      </paper-scroll-header-panel>
+    `;
+  }
+}
+customElements.define('sample-element', SampleElement);
+```
+
+## Contributing
+If you want to send a PR to this element, here are
+the instructions for running the tests and demo locally:
+
+### Installation
+```sh
+git clone https://github.com/PolymerElements/paper-scroll-header-panel
+cd paper-scroll-header-panel
+npm install
+npm install -g polymer-cli
+```
+
+### Running the demo locally
+```sh
+polymer serve --npm
+open http://127.0.0.1:<port>/demo/
+```
+
+### Running the tests
+```sh
+polymer test --npm
+```
