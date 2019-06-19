@@ -91,7 +91,6 @@ Custom property | Description | Default
 --paper-scroll-header-panel-container | To override or add container styles | {}
 --paper-scroll-header-panel-header-container | To override or add header styles | {}
 
-@group Paper Element
 @element paper-scroll-header-panel
 @demo demo/transform-header-1.html Transform header 1
 @demo demo/transform-header-2.html Transform header 2
@@ -103,9 +102,9 @@ Custom property | Description | Default
 @demo demo/hide-header.html Hide header
 @demo demo/toggle-fixed-header.html Toggle fixed header
 @demo demo/drawer-panel.html Combine with paper-drawer-panel
-@hero hero.svg
 */
 export const PaperScrollHeaderPanel = Polymer$0({
+  /** @override */
   _template: html`
     <style>
       :host {
@@ -273,12 +272,14 @@ export const PaperScrollHeaderPanel = Polymer$0({
 
   listeners: {'iron-resize': 'measureHeaderHeight'},
 
+  /** @override */
   ready: function() {
     this._scrollHandler = this._scroll.bind(this);
     this.scroller.addEventListener('scroll', this._scrollHandler);
     console.warn(this.is, 'is deprecated. Please use app-layout instead!');
   },
 
+  /** @override */
   attached: function() {
     requestAnimationFrame(this.measureHeaderHeight.bind(this));
   },
